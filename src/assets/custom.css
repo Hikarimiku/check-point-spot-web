@@ -1,0 +1,15 @@
+.disabledLink {
+    pointer-events: none;
+    cursor: not-allowed;
+    color: white;
+}
+
+.customBG {
+    background-color: #f8f8ff;
+    height: 100%;
+}
+
+.customTableHeaderCell{
+  color: #f8f8ff;
+  font: bold;
+}
