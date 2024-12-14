@@ -25,6 +25,9 @@ export default function TaskTable({
   lsTask,
   displayMsg,
   reloadData,
+  paging,
+  updatePaging,
+  updatePagingSize
 }) {
   const inProgress = "IN PROGRESS";
   const dispatch = useDispatch();
@@ -122,13 +125,16 @@ export default function TaskTable({
             {displayMsg}
           </Typography>
         </Table>
+{/*       
         <TablePagination
             rowsPerPageOptions={[5, 10, 20]}
             component="div"
-            count={10}
-            rowsPerPage={20}
-            page={1}
-          />
+            count={lsTask.length > 0 ? lsTask[0].totalData : 0}
+            rowsPerPage={paging.size}
+            page={paging.page}
+            onPageChange={updatePaging}
+            onRowsPerPageChange={updatePagingSize}
+          /> */}
 
       </Box>
     </Box>

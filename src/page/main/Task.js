@@ -20,7 +20,7 @@ import {
   networkErrorMsg,
   noRecordMsg,
 } from "../../variables/constant";
-import UserGroupDialog from "../../components/dialog/TaskDialog";
+import TaskDialog from "../../components/dialog/TaskDialog";
 import TaskTable from "../../components/table/TaskTable";
 
 function Task() {
@@ -29,7 +29,7 @@ function Task() {
     status: "",
     paging: {
       page: 0,
-      size: 20,
+      size: 10000,
     },
   };
   const [searchForm, setSearchForm] = useState(initForm);
@@ -82,6 +82,23 @@ function Task() {
       ...searchForm,
       status:valueSelect
     });
+  };
+
+  const updatePaging = (e, newPage) => {
+    console.log(newPage)
+    setSearchForm({
+      ...searchForm,
+      paging:{...searchForm.paging, page: e.target.value}
+    });
+    loadData();
+  };
+
+  const updatePagingSize = (e) => {
+    setSearchForm({
+      ...searchForm,
+      paging:{page: 0, size:e.target.value}
+    });
+    loadData();
   };
 
   const closeDialog = () => {
@@ -160,7 +177,7 @@ function Task() {
             </Button>
           </Grid>
         </Grid>
-        <UserGroupDialog
+        <TaskDialog
           showDialog={showDialog}
           closeDialog={closeDialog}
           typeOperation={typeOperation}
@@ -177,6 +194,9 @@ function Task() {
               lsTask={lsTask}
               displayMsg={displayMsg}
               reloadData={reloadData}
+              paging={searchForm.paging}
+              updatePaging={updatePaging}
+              updatePagingSize={updatePagingSize}
             />
           )}
         </Grid>
